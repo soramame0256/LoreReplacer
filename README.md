@@ -18,5 +18,5 @@
 
 例2: /addreplacer koreha#siranai#sgyoudesu //DELETE
 # ライブラリ
-このmodはApache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0) のライセンスで配布されている成果物を含んでいます。
+このmodはApache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0) のライセンスで配布されている成果物を使用しています。
 - Gson
