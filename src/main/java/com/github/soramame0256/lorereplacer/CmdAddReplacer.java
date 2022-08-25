@@ -34,8 +34,8 @@ public class CmdAddReplacer extends CommandBase {
         if (args.length == 2){
             String regex = args[0];
             String to = args[1];
-            regex = regex.replaceAll("\\\\s", " ");
-            to = to.replaceAll("\\\\s", " ");
+            regex = regex.replaceAll("#s", " ");
+            to = to.replaceAll("#s", " ");
             if (!dataUtils.getRootJson().has("replacers")) dataUtils.getRootJson().add("replacers", new JsonArray());
             JsonArray ja = dataUtils.getRootJson().getAsJsonArray("replacers");
             JsonObject jo = new JsonObject();
