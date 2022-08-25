@@ -47,6 +47,7 @@ public class LoreReplacer {
         }
         MinecraftForge.EVENT_BUS.register(new EventHandler());
         ClientCommandHandler.instance.registerCommand(new CmdAddReplacer());
+        ClientCommandHandler.instance.registerCommand(new CmdRemoveReplacer());
     }
 
     /**
