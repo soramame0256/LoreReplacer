@@ -44,7 +44,6 @@ public class CmdListReplacer extends CommandBase {
         JsonArray ja = dataUtils.getRootJson().getAsJsonArray("replacers");
         ITextComponent tc = new TextComponentString(INFO_PREFIX);
         ITextComponent toJoin;
-        tc.appendText("\n");
         JsonObject jo;
         MessageDigest md5 = null;
         try {
@@ -58,6 +57,7 @@ public class CmdListReplacer extends CommandBase {
         regexbl = REGEX_LIST_NAME.length();
         tobl = TO_LIST_NAME.length();
         if (args.length == 0) {
+            tc.appendText("§7(ページ1)\n");
             for (JsonElement je : ja) {
                 if(janum == 15) break;
                 jo = je.getAsJsonObject();
@@ -73,10 +73,11 @@ public class CmdListReplacer extends CommandBase {
             for (int i = 1; i <= regexlt - regexbl; i++) tc.appendText(" ");
             tc.appendText("|" + TO_LIST_NAME);
             for (int i = 1; i <= tolt - tobl; i++) tc.appendText(" ");
-            tc.appendText("| 操作\n");
+            tc.appendText("| 操作");
             janum = 0;
             for (JsonElement je : ja) {
                 if(janum == 15) break;
+                tc.appendText("\n");
                 jo = je.getAsJsonObject();
                 regex = jo.get("from").getAsString();
                 to = jo.get("to").getAsString();
@@ -122,15 +123,18 @@ public class CmdListReplacer extends CommandBase {
                 st.setUnderlined(true);
                 toJoin.setStyle(st);
                 tc.appendSibling(toJoin);
-                tc.appendText("\n");
                 janum++;
             }
             sender.sendMessage(tc);
         }else if(args.length == 1){
             int page = Integer.parseInt(args[0]);
+            tc.appendText("§7(ページ"+ page + ")\n");
             for (JsonElement je : ja) {
-                if(janum < page*15) continue;
-                if(janum == (page+1)*15) break;
+                if(janum < (page-1)*15) {
+                    janum++;
+                    continue;
+                }
+                if(janum == page*15) break;
                 jo = je.getAsJsonObject();
                 regex = jo.get("from").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c");
                 to = jo.get("to").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c");
@@ -144,11 +148,15 @@ public class CmdListReplacer extends CommandBase {
             for (int i = 1; i <= regexlt - regexbl; i++) tc.appendText(" ");
             tc.appendText("|" + TO_LIST_NAME);
             for (int i = 1; i <= tolt - tobl; i++) tc.appendText(" ");
-            tc.appendText("| 操作\n");
+            tc.appendText("| 操作");
             janum = 0;
             for (JsonElement je : ja) {
-                if(janum < page*15) continue;
-                if(janum == (page+1)*15) break;
+                if(janum < (page-1)*15) {
+                    janum++;
+                    continue;
+                }
+                if(janum == page*15) break;
+                tc.appendText("\n");
                 jo = je.getAsJsonObject();
                 regex = jo.get("from").getAsString();
                 to = jo.get("to").getAsString();
@@ -194,9 +202,9 @@ public class CmdListReplacer extends CommandBase {
                 st.setUnderlined(true);
                 toJoin.setStyle(st);
                 tc.appendSibling(toJoin);
-                tc.appendText("\n");
                 janum++;
             }
+            sender.sendMessage(tc);
         }
     }
 }

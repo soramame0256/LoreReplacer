@@ -36,7 +36,8 @@ public class CmdEditReplacer extends CommandBase {
             if(args[0].equals("regex")){
                 int index = Integer.parseInt(args[1]);
                 String regex = args[2].replaceAll("#s", " ").replaceAll("#c", "§");
-                if(ja.size()-1<=index){
+                sender.sendMessage(new TextComponentString("通過テスト 引数: " + args[0] + " " + args[1] + " " + args[2]));
+                if(ja.size()-1>=index){
                     ja.get(index).getAsJsonObject().addProperty("from", regex);
                     sender.sendMessage(new TextComponentString(INFO_PREFIX + "該当replacerの正規表現を\"" + regex + "§f\"に変更しました。"));
                 }
@@ -44,11 +45,12 @@ public class CmdEditReplacer extends CommandBase {
             else if(args[0].equals("to")){
                 int index = Integer.parseInt(args[1]);
                 String to = args[2].replaceAll("#s", " ").replaceAll("#c", "§");
-                if(ja.size()-1<=index){
+                if(ja.size()-1>=index){
                     ja.get(index).getAsJsonObject().addProperty("to", to);
                     sender.sendMessage(new TextComponentString(INFO_PREFIX + "該当replacerの置換先テキストを\"" + to + "§f\"に変更しました。"));
                 }
             }
+            dataUtils.getRootJson().add("replacers", ja);
             try {
                 dataUtils.flush();
             } catch (IOException e) {
