@@ -85,13 +85,13 @@ public class CmdListReplacer extends CommandBase {
                 shownTo = to.replaceAll(" ", "#s").replaceAll("§", "#c");
                 regexl = shownRegex.length();
                 tol = shownTo.length();
-                tc.appendText(shownRegex);
+                tc.appendText(regex);
                 for (int i = 1; i <= regexlt - regexl; i++) tc.appendText(" ");
                 tc.appendText("§f | ");
-                tc.appendText(shownTo);
+                tc.appendText(to);
                 for (int i = 1; i <= tolt - tol; i++) tc.appendText(" ");
                 tc.appendText(" §f| ");
-                ClickEvent tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer regex " + janum + " <正規表現>");
+                ClickEvent tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer regex " + janum + " " + shownRegex);
                 Style st = new Style();
                 toJoin = new TextComponentString("§b[r✎]");
                 st.setClickEvent(tx);
@@ -102,7 +102,7 @@ public class CmdListReplacer extends CommandBase {
                 tc.appendSibling(toJoin);
                 tc.appendText(" | ");
 
-                tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer to " + janum + " <置換先テキスト>");
+                tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer to " + janum + " " + shownTo);
                 st = new Style();
                 toJoin = new TextComponentString("§b[t✎]");
                 st.setClickEvent(tx);
@@ -170,7 +170,7 @@ public class CmdListReplacer extends CommandBase {
                 tc.appendText(shownTo);
                 for (int i = 1; i <= tolt - tol; i++) tc.appendText(" ");
                 tc.appendText(" §f| ");
-                ClickEvent tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer regex " + janum + " <正規表現>");
+                ClickEvent tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer regex " + janum + " " + shownRegex);
                 Style st = new Style();
                 toJoin = new TextComponentString("§b[r✎]");
                 st.setClickEvent(tx);
@@ -181,7 +181,7 @@ public class CmdListReplacer extends CommandBase {
                 tc.appendSibling(toJoin);
                 tc.appendText(" | ");
 
-                tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer to " + janum + " <置換先テキスト>");
+                tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer to " + janum + " " + shownTo);
                 st = new Style();
                 toJoin = new TextComponentString("§b[t✎]");
                 st.setClickEvent(tx);

@@ -3,7 +3,7 @@
     "modid": "LoreReplacer",
     "name": "LoreReplacer",
     "description": "this replaces specific lore line to pre-set text",
-    "version": "1.0-SNAPSHOT",
+    "version": "1.1-SNAPSHOT",
     "mcversion": "1.12.2",
     "url": "",
     "updateUrl": "",

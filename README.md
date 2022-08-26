@@ -5,13 +5,20 @@
 
 /addreplacerコマンドで新しく追加します。
 
-/removereplacerコマンドで削除できます。
+##コマンド
+/addreplacer <正規表現> <置換先>: replacerを新しく追加します。
+
+/removereplacer <正規表現> : replacerを削除できます。
+
+/listreplacer [\<page\>] : replacerのリストが出力でき、編集なども可能です。
 ## 細かい/addreplacerの使い方
 /addreplacer <正規表現> <置換先>
 
 が基本形です。
 
 空白は#sに置き換えてください。
+
+カラーコード(§)は#cに置き換えてください。
 
 正規表現についてはhttps://regexr.com/ を参照してください。
 
