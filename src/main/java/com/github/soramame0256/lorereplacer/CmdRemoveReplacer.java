@@ -10,6 +10,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +50,7 @@ public class CmdRemoveReplacer extends CommandBase {
                 }
             }
             for(JsonElement je : toRemove){
-                sender.sendMessage(new TextComponentString(INFO_PREFIX + "\"" + je.getAsJsonObject().get("to").getAsString() + "\"に置換される該当replacerを削除しました。"));
+                sender.sendMessage(new TextComponentString(INFO_PREFIX + "\"" + je.getAsJsonObject().get("to").getAsString() + "§f\"に置換される該当replacerを削除しました。"));
                 ja.remove(je);
             }
             dataUtils.getRootJson().add("replacers", ja);
@@ -55,6 +58,35 @@ public class CmdRemoveReplacer extends CommandBase {
                 dataUtils.flush();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }else if(args.length == 2){
+            if(args[0].equals("ashash")){
+                if (!dataUtils.getRootJson().has("replacers")) dataUtils.getRootJson().add("replacers", new JsonArray());
+                JsonArray ja = dataUtils.getRootJson().getAsJsonArray("replacers");
+                List<JsonElement> toRemove = new ArrayList<>();
+                MessageDigest md5 = null;
+                try {
+                    md5 = MessageDigest.getInstance("MD5");
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+                if(md5 == null) return;
+                for(JsonElement je : dataUtils.getRootJson().getAsJsonArray("replacers")){
+                    byte[] hashedText = md5.digest((je.getAsJsonObject().get("from").getAsString() + je.getAsJsonObject().get("to").getAsString()).getBytes());
+                    if(args[1].equals(String.format("%020x", new BigInteger(1, hashedText)))){
+                        toRemove.add(je);
+                    }
+                }
+                for(JsonElement je : toRemove){
+                    sender.sendMessage(new TextComponentString(INFO_PREFIX + "\"" + je.getAsJsonObject().get("to").getAsString() + "§f\"に置換される該当replacerを削除しました。"));
+                    ja.remove(je);
+                }
+                dataUtils.getRootJson().add("replacers", ja);
+                try {
+                    dataUtils.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -49,7 +49,7 @@ public class CmdAddReplacer extends CommandBase {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            sender.sendMessage(new TextComponentString(INFO_PREFIX + "正規表現\"" + regex + "\"を\"" + to + "\"で置換します。"));
+            sender.sendMessage(new TextComponentString(INFO_PREFIX + "正規表現\"" + regex + "§f\"を\"" + to + "§f\"で置換します。"));
         }
     }
 }
