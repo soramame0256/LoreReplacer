@@ -50,6 +50,7 @@ public class LoreReplacer {
         ClientCommandHandler.instance.registerCommand(new CmdAddReplacer());
         ClientCommandHandler.instance.registerCommand(new CmdRemoveReplacer());
         ClientCommandHandler.instance.registerCommand(new CmdListReplacer());
+        ClientCommandHandler.instance.registerCommand(new CmdEditReplacer());
     }
 
     /**
