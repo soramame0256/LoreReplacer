@@ -3,6 +3,7 @@
 # 使い方
 マインクラフトのディレクトリ内にLoreReplacerというフォルダが生成されるのでその中のreplacers.jsonを別に場所から持ってきたものに置き換えるか
 /addreplacerコマンドで新しく追加します。
+/removereplacerコマンドで削除できます。
 ## 細かい/addreplacerの使い方
 /addreplacer <正規表現> <置換先>
 
@@ -17,6 +18,12 @@
 例1: /addreplacer test#sdayo テスト#sだよ
 
 例2: /addreplacer koreha#siranai#sgyoudesu //DELETE
+## 細かい/removereplacerの使い方
+基本/addreplacerと同じです。
+
+ただ基本形は/removereplacer <正規表現>となっています。
+
+また実行すると該当するものすべてが削除されます。
 # ライブラリ
 このmodはApache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0) のライセンスで配布されている成果物を使用しています。
 - Gson
