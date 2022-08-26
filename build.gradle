@@ -19,6 +19,8 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(8)
 }
 
+tasks.withType(Jar) {compileJava.options.encoding = 'UTF-8'}
+
 minecraft {
     // The mappings can be changed at any time and must be in the following format.
     // Channel:   Version:
