@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.github.soramame0256.lorereplacer.LoreReplacer.INFO_PREFIX;
 import static com.github.soramame0256.lorereplacer.LoreReplacer.dataUtils;
 
 public class CmdRemoveReplacer extends CommandBase {
@@ -36,7 +37,7 @@ public class CmdRemoveReplacer extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (args.length == 1){
             String regex = args[0];
-            regex = regex.replaceAll("#s", " ");
+            regex = regex.replaceAll("#s", " ").replaceAll("#c", "§");
             if (!dataUtils.getRootJson().has("replacers")) dataUtils.getRootJson().add("replacers", new JsonArray());
             JsonArray ja = dataUtils.getRootJson().getAsJsonArray("replacers");
             List<JsonElement> toRemove = new ArrayList<>();
@@ -46,7 +47,7 @@ public class CmdRemoveReplacer extends CommandBase {
                 }
             }
             for(JsonElement je : toRemove){
-                sender.sendMessage(new TextComponentString("\"" + je.getAsJsonObject().get("to").getAsString() + "\"に置換される該当replacerを削除しました。"));
+                sender.sendMessage(new TextComponentString(INFO_PREFIX + "\"" + je.getAsJsonObject().get("to").getAsString() + "\"に置換される該当replacerを削除しました。"));
                 ja.remove(je);
             }
             dataUtils.getRootJson().add("replacers", ja);

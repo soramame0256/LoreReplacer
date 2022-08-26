@@ -10,6 +10,7 @@ import net.minecraft.util.text.TextComponentString;
 
 import java.io.IOException;
 
+import static com.github.soramame0256.lorereplacer.LoreReplacer.INFO_PREFIX;
 import static com.github.soramame0256.lorereplacer.LoreReplacer.dataUtils;
 
 public class CmdAddReplacer extends CommandBase {
@@ -48,7 +49,7 @@ public class CmdAddReplacer extends CommandBase {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            sender.sendMessage(new TextComponentString("regex\"" + regex + "\"を\"" + to + "\"で置換します。"));
+            sender.sendMessage(new TextComponentString(INFO_PREFIX + "正規表現\"" + regex + "\"を\"" + to + "\"で置換します。"));
         }
     }
 }
