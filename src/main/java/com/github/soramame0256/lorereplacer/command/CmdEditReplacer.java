@@ -1,4 +1,4 @@
-package com.github.soramame0256.lorereplacer;
+package com.github.soramame0256.lorereplacer.command;
 
 import com.google.gson.JsonArray;
 import net.minecraft.command.CommandBase;

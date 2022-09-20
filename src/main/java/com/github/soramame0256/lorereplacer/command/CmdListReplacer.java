@@ -1,4 +1,4 @@
-package com.github.soramame0256.lorereplacer;
+package com.github.soramame0256.lorereplacer.command;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -61,8 +61,8 @@ public class CmdListReplacer extends CommandBase {
             for (JsonElement je : ja) {
                 if(janum == 15) break;
                 jo = je.getAsJsonObject();
-                regex = jo.get("from").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c");
-                to = jo.get("to").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c");
+                regex = jo.get("from").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
+                to = jo.get("to").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
                 regexl = regex.length();
                 tol = to.length();
                 if (regexlt < regexl) regexlt = regexl;
@@ -81,8 +81,8 @@ public class CmdListReplacer extends CommandBase {
                 jo = je.getAsJsonObject();
                 regex = jo.get("from").getAsString();
                 to = jo.get("to").getAsString();
-                shownRegex = regex.replaceAll(" ", "#s").replaceAll("§", "#c");
-                shownTo = to.replaceAll(" ", "#s").replaceAll("§", "#c");
+                shownRegex = regex.replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
+                shownTo = to.replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
                 regexl = shownRegex.length();
                 tol = shownTo.length();
                 tc.appendText(regex);
@@ -136,8 +136,8 @@ public class CmdListReplacer extends CommandBase {
                 }
                 if(janum == page*15) break;
                 jo = je.getAsJsonObject();
-                regex = jo.get("from").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c");
-                to = jo.get("to").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c");
+                regex = jo.get("from").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
+                to = jo.get("to").getAsString().replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
                 regexl = regex.length();
                 tol = to.length();
                 if (regexlt < regexl) regexlt = regexl;
@@ -160,14 +160,14 @@ public class CmdListReplacer extends CommandBase {
                 jo = je.getAsJsonObject();
                 regex = jo.get("from").getAsString();
                 to = jo.get("to").getAsString();
-                shownRegex = regex.replaceAll(" ", "#s").replaceAll("§", "#c");
-                shownTo = to.replaceAll(" ", "#s").replaceAll("§", "#c");
+                shownRegex = regex.replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
+                shownTo = to.replaceAll(" ", "#s").replaceAll("§", "#c").replaceAll("\n", "#n");
                 regexl = shownRegex.length();
                 tol = shownTo.length();
-                tc.appendText(shownRegex);
+                tc.appendText(regex);
                 for (int i = 1; i <= regexlt - regexl; i++) tc.appendText(" ");
                 tc.appendText("§f | ");
-                tc.appendText(shownTo);
+                tc.appendText(to);
                 for (int i = 1; i <= tolt - tol; i++) tc.appendText(" ");
                 tc.appendText(" §f| ");
                 ClickEvent tx = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/editreplacer regex " + janum + " " + shownRegex);

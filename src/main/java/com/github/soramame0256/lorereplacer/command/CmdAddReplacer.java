@@ -1,4 +1,4 @@
-package com.github.soramame0256.lorereplacer;
+package com.github.soramame0256.lorereplacer.command;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -35,8 +35,9 @@ public class CmdAddReplacer extends CommandBase {
         if (args.length == 2){
             String regex = args[0];
             String to = args[1];
-            regex = regex.replaceAll("#s", " ").replaceAll("#c", "§");
-            to = to.replaceAll("#s", " ").replaceAll("#c", "§");
+            regex = regex.replaceAll("#s", " ").replaceAll("#c", "§").replaceAll("#n", "\n");
+            to = to.replaceAll("#s", " ").replaceAll("#c", "§").replaceAll("#n", "\n");
+
             if (!dataUtils.getRootJson().has("replacers")) dataUtils.getRootJson().add("replacers", new JsonArray());
             JsonArray ja = dataUtils.getRootJson().getAsJsonArray("replacers");
             JsonObject jo = new JsonObject();

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import static com.github.soramame0256.lorereplacer.LoreReplacer.*;
 
 public class DataUtils {
-    private final JsonObject jsonObject;
+    private JsonObject jsonObject;
     private final String filePath;
     public DataUtils(String fileName) throws IOException {
         if(Files.notExists(Paths.get(MOD_NAME))) {
@@ -95,6 +95,9 @@ public class DataUtils {
         fileWriter.write(print);
         fileWriter.flush();
         fileWriter.close();
+    }
+    public void reloadJsonFromFile(){
+        this.jsonObject = convertFileToJSON(this.filePath);
     }
     public JsonArray getJsonArrayData(String index){
         if (this.jsonObject.has(index)) {

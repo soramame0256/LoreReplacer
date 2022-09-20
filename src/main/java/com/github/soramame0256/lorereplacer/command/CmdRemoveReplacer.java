@@ -1,4 +1,4 @@
-package com.github.soramame0256.lorereplacer;
+package com.github.soramame0256.lorereplacer.command;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -40,7 +40,7 @@ public class CmdRemoveReplacer extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (args.length == 1){
             String regex = args[0];
-            regex = regex.replaceAll("#s", " ").replaceAll("#c", "§");
+            regex = regex.replaceAll("#s", " ").replaceAll("#c", "§").replaceAll("#n", "\n");
             if (!dataUtils.getRootJson().has("replacers")) dataUtils.getRootJson().add("replacers", new JsonArray());
             JsonArray ja = dataUtils.getRootJson().getAsJsonArray("replacers");
             List<JsonElement> toRemove = new ArrayList<>();

@@ -1,5 +1,6 @@
 package com.github.soramame0256.lorereplacer;
 
+import com.github.soramame0256.lorereplacer.command.*;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -46,11 +47,13 @@ public class LoreReplacer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ClientCommandHandler cch = ClientCommandHandler.instance;
         MinecraftForge.EVENT_BUS.register(new EventHandler());
-        ClientCommandHandler.instance.registerCommand(new CmdAddReplacer());
-        ClientCommandHandler.instance.registerCommand(new CmdRemoveReplacer());
-        ClientCommandHandler.instance.registerCommand(new CmdListReplacer());
-        ClientCommandHandler.instance.registerCommand(new CmdEditReplacer());
+        cch.registerCommand(new CmdAddReplacer());
+        cch.registerCommand(new CmdRemoveReplacer());
+        cch.registerCommand(new CmdListReplacer());
+        cch.registerCommand(new CmdEditReplacer());
+        cch.registerCommand(new CmdReloadReplacer());
     }
 
     /**
@@ -58,7 +61,6 @@ public class LoreReplacer {
      */
     @Mod.EventHandler
     public void postinit(FMLPostInitializationEvent event) {
-
     }
 
 
