@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.github.soramame0256.lorereplacer.LoreReplacer.*;
+import static com.github.soramame0256.lorereplacer.LoreReplacer.MOD_NAME;
 
 public class DataUtils {
     private JsonObject jsonObject;
